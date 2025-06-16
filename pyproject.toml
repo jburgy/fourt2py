@@ -1,0 +1,16 @@
+[build-system]
+build-backend = "mesonpy"
+requires = ["meson-python", "ninja", "numpy"]
+
+[project]
+name = "fourt2py"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.3.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.0",
+]

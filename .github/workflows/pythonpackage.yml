@@ -1,0 +1,38 @@
+name: Python package
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.12, 3.13]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Install GFortran
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install gfortran
+
+      - name: Set up with ${{ matrix.python-version }}
+        run: uv sync --no-editable --python $${{ matrix.python-version }}
+
+      - name: Lint with ruff
+        run: uv run --no-editable ruff check
+
+      - name: Check with mypy
+        run: uv run --no-editable mypy .
+
+      - name: Test with pytest
+        run: uv run --no-editable pytest
