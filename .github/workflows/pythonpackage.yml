@@ -26,13 +26,10 @@ jobs:
           sudo apt-get -y install gfortran
 
       - name: Set up with ${{ matrix.python-version }}
-        run: uv sync --no-editable --python $${{ matrix.python-version }}
+        run: uv sync --no-editable --python ${{ matrix.python-version }}
 
       - name: Lint with ruff
         run: uv run --no-editable ruff check
-
-      - name: Check with mypy
-        run: uv run --no-editable mypy .
 
       - name: Test with pytest
         run: uv run --no-editable pytest

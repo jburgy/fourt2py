@@ -5,7 +5,7 @@ requires = ["meson-python", "ninja", "numpy"]
 [project]
 name = "fourt2py"
 version = "0.1.0"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "numpy>=2.3.0",
 ]
