@@ -23,11 +23,6 @@ jobs:
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
-      - name: Install GFortran
-        run: |
-          sudo apt-get update
-          sudo apt-get -y install gfortran
-
       - name: Set up with ${{ matrix.python-version }}
         run: uv sync --python ${{ matrix.python-version }}
 
