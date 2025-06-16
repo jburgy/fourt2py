@@ -16,18 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
-        with:
-          enable-cache: true
-          cache-dependency-glob: "uv.lock"
-
-      - name: Set up with ${{ matrix.python-version }}
-        run: uv sync --python ${{ matrix.python-version }}
-
-      - name: Lint with ruff
-        run: uv run ruff check
-
-      - name: Test with pytest
-        run: uv run pytest
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --python ${{ matrix.python-version }}
+      - run: uv run ruff check
+      - run: uv run pytest
