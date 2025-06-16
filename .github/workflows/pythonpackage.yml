@@ -20,5 +20,5 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: uv sync
-      - run: uv run ruff check
+      - uses: astral-sh/ruff-action@v3
       - run: uv run pytest
